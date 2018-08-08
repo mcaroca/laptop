@@ -1,0 +1,30 @@
+
+#!/bin/sh
+
+echo
+echo 'Instalar manualmente:'
+echo
+echo ' Firefox: '
+echo ' - Ad blocker plus: https://addons.mozilla.org/en-US/firefox/addon/adblock-plus/'
+echo ' Chrome: '
+echo ' - uBlock: https://chrome.google.com/webstore/detail/ublock-origin/cjpalhdlnbpafiamejdnhcphjbkeiagm?hl=en'
+echo ' - Full Page Screen Capture: https://chrome.google.com/webstore/detail/full-page-screen-capture/fdpohaocaechififmbbbbbknoalclacl?hl=en'
+echo ' - TabCloud: https://chrome.google.com/webstore/detail/tabcloud/npecfdijgoblfcgagoijgmgejmcpnhof?hl=en'
+echo
+read -p 'ENTER para continuar...'
+echo
+
+brew tap caskroom/cask
+brew install brew-cask
+
+brew cask install dropbox
+brew cask install google-chrome
+brew cask install spotify
+brew cask install evernote
+brew cask install alfred
+brew cask install dash
+brew cask install iterm2
+brew cask install etcher
+brew cask install firefox
+brew cask install filezilla
+brew cask install sourcetree

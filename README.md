@@ -4,8 +4,7 @@ Laptop
 Laptop is a script to set up an OS X laptop for web development.
 
 It can be run multiple times on the same machine safely.
-It installs, upgrades, or skips packages
-based on what is already installed on the machine.
+It installs, upgrades, or skips packages based on what is already installed on the machine.
 
 Requirements
 ------------
@@ -29,10 +28,6 @@ curl --remote-name https://raw.githubusercontent.com/thoughtbot/laptop/master/ma
 less mac
 sh mac 2>&1 | tee ~/laptop.log
 ```
-
-Optionally, [install thoughtbot/dotfiles][dotfiles].
-
-[dotfiles]: https://github.com/thoughtbot/dotfiles#install
 
 Debugging
 ---------
@@ -70,13 +65,6 @@ Unix tools:
 [Tmux]: http://tmux.github.io/
 [Zsh]: http://www.zsh.org/
 
-Heroku tools:
-
-* [Heroku Toolbelt] and [Parity] for interacting with the Heroku API
-
-[Heroku Toolbelt]: https://toolbelt.heroku.com/
-[Parity]: https://github.com/thoughtbot/parity
-
 GitHub tools:
 
 * [Hub] for interacting with the GitHub API
@@ -111,15 +99,17 @@ Programming languages and configuration:
 
 Databases:
 
+* [Mysql]    for storing relational data
 * [Postgres] for storing relational data
-* [Redis] for storing key-value data
+* [Redis]    for storing key-value data
 
+[Mysql]: https://www.mysql.com/
 [Postgres]: http://www.postgresql.org/
 [Redis]: http://redis.io/
 
 It should take less than 15 minutes to install (depends on your machine).
 
-Customize in `~/.laptop.local`
+ustomize in `~/.laptop.local`
 ------------------------------
 
 Your `~/.laptop.local` is run at the end of the Laptop script.
@@ -129,48 +119,22 @@ For example:
 ```sh
 #!/bin/sh
 
-brew bundle --file=- <<EOF
-brew "Caskroom/cask/dockertoolbox"
-brew "go"
-brew "ngrok"
-brew "watch"
-EOF
+brew tap caskroom/cask
+brew install brew-cask
 
-default_docker_machine() {
-  docker-machine ls | grep -Fq "default"
-}
-
-if ! default_docker_machine; then
-  docker-machine create --driver virtualbox default
-fi
-
-default_docker_machine_running() {
-  default_docker_machine | grep -Fq "Running"
-}
-
-if ! default_docker_machine_running; then
-  docker-machine start default
-fi
-
-fancy_echo "Cleaning up old Homebrew formulae ..."
-brew cleanup
-brew cask cleanup
-
-if [ -r "$HOME/.rcrc" ]; then
-  fancy_echo "Updating dotfiles ..."
-  rcup
-fi
+brew cask install dropbox
+brew cask install google-chrome
+brew cask install spotify
+brew cask install evernote
 ```
 
 Write your customizations such that they can be run safely more than once.
 See the `mac` script for examples.
 
-Laptop functions such as `fancy_echo` and
+Laptop functions such as `fancy_echo`,
+`brew_install_or_upgrade`, and
 `gem_install_or_update`
 can be used in your `~/.laptop.local`.
-
-See the [wiki](https://github.com/thoughtbot/laptop/wiki)
-for more customization examples.
 
 Contributing
 ------------

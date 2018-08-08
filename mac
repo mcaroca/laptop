@@ -105,14 +105,9 @@ brew "git"
 brew "openssl"
 brew "rcm"
 brew "reattach-to-user-namespace"
-brew "the_silver_searcher"
 brew "tmux"
 brew "vim"
 brew "zsh"
-
-# Heroku
-brew "heroku-toolbelt"
-brew "parity"
 
 # GitHub
 brew "hub"
@@ -124,12 +119,13 @@ brew "imagemagick"
 brew "qt"
 
 # Programming languages
-brew "libyaml" # should come after openssl
+brew "libyaml"
 brew "node"
 brew "rbenv"
 brew "ruby-build"
 
 # Databases
+brew "mysql", restart_service: true
 brew "postgres", restart_service: true
 brew "redis", restart_service: true
 EOF
